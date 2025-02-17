@@ -14,7 +14,7 @@ function Footer() {
     <Container fluid className="footer">
       <Row>
         <Col md="4" className="footer-copywright">
-          <h3>Copyright © {year} SB</h3>
+          <h3>Copyright © {year} FA</h3>
         </Col>
         <Col md="4" className="footer-body">
           <ul className="footer-icons">
@@ -30,7 +30,7 @@ function Footer() {
             </li>
             <li className="social-icons">
               <a
-                href="https://twitter.com/Soumyajit4419"
+                href="https://x.com/Xilef99215207"
                 style={{ color: "white" }}
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -40,7 +40,7 @@ function Footer() {
             </li>
             <li className="social-icons">
               <a
-                href="https://www.linkedin.com/in/soumyajit4419/"
+                href="https://www.linkedin.com/in/f%C3%A9lix-allard-06766425b/"
                 style={{ color: "white" }}
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -50,7 +50,7 @@ function Footer() {
             </li>
             <li className="social-icons">
               <a
-                href="https://www.instagram.com/soumyajit4419"
+                href="https://www.instagram.com/felixallard_/"
                 style={{ color: "white" }}
                 target="_blank" 
                 rel="noopener noreferrer"

@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/MyPortfolio/static/css/main.70568949.css",
+    "main.js": "/MyPortfolio/static/js/main.cd787910.js",
+    "static/js/415.4d6acbeb.chunk.js": "/MyPortfolio/static/js/415.4d6acbeb.chunk.js",
+    "static/js/787.1ed0c42c.chunk.js": "/MyPortfolio/static/js/787.1ed0c42c.chunk.js",
+    "static/media/MyPerson.png": "/MyPortfolio/static/media/MyPerson.0f48217dbf9ffbbba226.png",
+    "static/media/FelixAllardCV.pdf": "/MyPortfolio/static/media/FelixAllardCV.f24f423b46eb66690f1f.pdf",
+    "static/media/leaf.png": "/MyPortfolio/static/media/leaf.ff2616f664c8c0ceab91.png",
+    "static/media/logo2.png": "/MyPortfolio/static/media/logo2.91f1d52cf819bfbf05be.png",
+    "static/media/emotion.png": "/MyPortfolio/static/media/emotion.eabfc16e7a146ab15778.png",
+    "static/media/suicide.png": "/MyPortfolio/static/media/suicide.9c86cd7138a398c45fa5.png",
+    "static/media/codeEditor.png": "/MyPortfolio/static/media/codeEditor.1b585492490c8c1cace9.png",
+    "static/media/blog.png": "/MyPortfolio/static/media/blog.fb8ab7f271a937d5fc01.png",
+    "static/media/home-main.svg": "/MyPortfolio/static/media/home-main.359935c39288e92d4dba5c9f2445b91d.svg",
+    "static/media/chatify.png": "/MyPortfolio/static/media/chatify.7206044e0b5cdad44726.png",
+    "static/media/home-bg.jpg": "/MyPortfolio/static/media/home-bg.dc52d5d40a40b13154b0.jpg",
+    "static/media/avatar.svg": "/MyPortfolio/static/media/avatar.7f806e40d46fc76fbc3c4a3d71349951.svg",
+    "static/media/pre.svg": "/MyPortfolio/static/media/pre.4410c5baaa673cc131da.svg",
+    "index.html": "/MyPortfolio/index.html",
+    "main.70568949.css.map": "/MyPortfolio/static/css/main.70568949.css.map",
+    "main.cd787910.js.map": "/MyPortfolio/static/js/main.cd787910.js.map",
+    "415.4d6acbeb.chunk.js.map": "/MyPortfolio/static/js/415.4d6acbeb.chunk.js.map",
+    "787.1ed0c42c.chunk.js.map": "/MyPortfolio/static/js/787.1ed0c42c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.70568949.css",
+    "static/js/main.cd787910.js"
+  ]
+}

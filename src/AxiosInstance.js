@@ -6,7 +6,7 @@ const getToken = () => Cookies.get('authToken');
 
 // Create an Axios instance with the base URL and credentials configured
 const api = axios.create({
-    baseURL: 'http://96.23.35.62:5171/api', // Adjust your base URL as needed
+    baseURL: 'https://cors-anywhere.herokuapp.com/http://96.23.35.62:5171/api', // Adjust your base URL as needed
     headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${getToken()}`

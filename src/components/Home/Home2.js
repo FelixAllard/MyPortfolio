@@ -52,22 +52,22 @@ function Home2() {
               </p>
               <ul className="home-about-social-links">
                 <li className="social-icons">
-                  <a href="https://github.com/soumyajit4419" target="_blank" rel="noreferrer" className="icon-colour  home-social-icons">
+                  <a href="https://github.com/FelixAllard" target="_blank" rel="noreferrer" className="icon-colour  home-social-icons">
                     <AiFillGithub />
                   </a>
                 </li>
                 <li className="social-icons">
-                  <a href="https://twitter.com/Soumyajit4419" target="_blank" rel="noreferrer" className="icon-colour  home-social-icons">
+                  <a href="https://x.com/Xilef99215207" target="_blank" rel="noreferrer" className="icon-colour  home-social-icons">
                     <AiOutlineTwitter />
                   </a>
                 </li>
                 <li className="social-icons">
-                  <a href="https://www.linkedin.com/in/soumyajit4419/" target="_blank" rel="noreferrer" className="icon-colour  home-social-icons">
+                  <a href="https://www.linkedin.com/in/f%C3%A9lix-allard-06766425b/" target="_blank" rel="noreferrer" className="icon-colour  home-social-icons">
                     <FaLinkedinIn />
                   </a>
                 </li>
                 <li className="social-icons">
-                  <a href="https://www.instagram.com/soumyajit4419" target="_blank" rel="noreferrer" className="icon-colour home-social-icons">
+                  <a href="https://www.instagram.com/felixallard_/" target="_blank" rel="noreferrer" className="icon-colour home-social-icons">
                     <AiFillInstagram />
                   </a>
                 </li>

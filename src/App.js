@@ -22,7 +22,8 @@ import i18n from 'i18next';
 import {I18nextProvider} from "react-i18next";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
-import BlogAdmin from "./components/Blog/BlogAdmin";  // Import i18n to check its state
+import BlogAdmin from "./components/Blog/BlogAdmin";
+import AddProject from "./components/Projects/AddProject";  // Import i18n to check its state
 
 function App() {
   const [load, updateLoad] = useState(true);
@@ -67,10 +68,11 @@ function App() {
               <Route path="*" element={<Navigate to="/"/>} />
               <Route path="/login" element={<Login/>}/>
               <Route path="/register" element={<Register />} />
+              <Route path="/project/create" element={<AddProject/>}/>
             </Routes>
-            <Footer />
+            {/*<Footer />*/}
           </div>
-        </Router>
+          </Router>
       </I18nextProvider>
   );
 }

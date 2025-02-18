@@ -59,6 +59,8 @@ const register = async (username, email, password) => {
     return await makeRequest('POST', '/Auth/register', registerData);
 };
 
+
+
 // Logout function to clear the token
 const logout = () => {
     Cookies.remove('authToken');

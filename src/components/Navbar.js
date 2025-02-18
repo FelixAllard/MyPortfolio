@@ -7,7 +7,7 @@ import logo from "../Assets/logo2.png";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
-import {ImBlog, ImUser} from "react-icons/im";
+import { ImBlog, ImUser } from "react-icons/im";
 import {
   AiFillStar,
   AiOutlineHome,
@@ -16,7 +16,7 @@ import {
 } from "react-icons/ai";
 import { CgFileDocument } from "react-icons/cg";
 import LanguageToggle from "../Languages/LanguageToggle";
-import {isLoggedIn} from "../AxiosInstance";
+import { isLoggedIn } from "../AxiosInstance";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -51,7 +51,7 @@ function NavBar() {
           </Navbar.Toggle>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav.Item>
-              <LanguageToggle/>
+              <LanguageToggle />
             </Nav.Item>
 
             <Nav className="ms-auto" defaultActiveKey="#home">
@@ -84,20 +84,21 @@ function NavBar() {
                   <ImBlog style={{ marginBottom: "2px" }} /> {t('blog')}
                 </Nav.Link>
               </Nav.Item>
-              {
-                isLoggedIn()?
-                    <Nav.Item>
-                      <Nav.Link as={Link} to="/login" onClick={() => updateExpanded(false)}>
-                        <ImUser style={{ marginBottom: "2px" }} /> {t('login')}
-                      </Nav.Link>
-                    </Nav.Item>:
-                    <Nav.Item>
-                      <Nav.Link as={Link} to="/login" onClick={() => updateExpanded(false)}>
-                        <ImUser style={{ marginBottom: "2px" }} /> {t('loggedin')}
-                      </Nav.Link>
-                    </Nav.Item>
-              }
 
+              {/* Corrected logic for displaying the login/logout button */}
+              {isLoggedIn() ? (
+                  <Nav.Item>
+                    <Nav.Link as={Link} to="/logout" onClick={() => updateExpanded(false)}>
+                      <ImUser style={{ marginBottom: "2px" }} /> {t('loggedin')}
+                    </Nav.Link>
+                  </Nav.Item>
+              ) : (
+                  <Nav.Item>
+                    <Nav.Link as={Link} to="/login" onClick={() => updateExpanded(false)}>
+                      <ImUser style={{ marginBottom: "2px" }} /> {t('login')}
+                    </Nav.Link>
+                  </Nav.Item>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

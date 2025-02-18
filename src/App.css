@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+#scroll {
+  overflow: auto;
+}
+
+#no-scroll {
+  overflow: hidden;
+}
+
+footer {
+  margin-top: auto; /* Ensure footer stays at the bottom */
+}
+
+

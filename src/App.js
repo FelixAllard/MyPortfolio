@@ -21,7 +21,8 @@ import './Languages/i18n';
 import i18n from 'i18next';
 import {I18nextProvider} from "react-i18next";
 import Login from "./components/Auth/Login";
-import Register from "./components/Auth/Register";  // Import i18n to check its state
+import Register from "./components/Auth/Register";
+import BlogAdmin from "./components/Blog/BlogAdmin";  // Import i18n to check its state
 
 function App() {
   const [load, updateLoad] = useState(true);
@@ -53,7 +54,7 @@ function App() {
       <I18nextProvider i18n={i18n}>
         <Router>
           <Preloader load={load} />
-          <div className="App" id={load ? "no-scroll" : "scroll"}>
+          <div className="App d-flex flex-column min-vh-100" id={load ? "no-scroll" : "scroll"}>
             <Navbar />
             <ScrollToTop />
             <Routes>
@@ -62,6 +63,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/resume" element={<Resume />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/admin/blog" element={<BlogAdmin/>}/>
               <Route path="*" element={<Navigate to="/"/>} />
               <Route path="/login" element={<Login/>}/>
               <Route path="/register" element={<Register />} />

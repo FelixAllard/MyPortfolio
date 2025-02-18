@@ -84,14 +84,6 @@ function Techstack() {
 
         <Col xs={4} md={2} className="tech-icons">
             <SiSwift />
-        </Col><Col xs={4} md={2} className="tech-icons">
-        <DiJava />
-        </Col><Col xs={4} md={2} className="tech-icons">
-            <DiJava />
-        </Col><Col xs={4} md={2} className="tech-icons">
-            <DiJava />
-        </Col><Col xs={4} md={2} className="tech-icons">
-            <DiJava />
         </Col>
 
     </Row>

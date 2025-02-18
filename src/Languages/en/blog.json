@@ -1,0 +1,12 @@
+{
+  "title": "Comments",
+  "noComments": "No comments yet!",
+  "beFirst": "Be the first to share your thoughts.",
+  "commentBy": "Comment by",
+  "commentOnPost": "Comment on Post {{postId}}",
+  "postedOn": "Posted on",
+  "addComment": "Add a Comment",
+  "placeholder": "Share your thoughts here...",
+  "postButton": "Post Comment",
+  "posting": "Posting..."
+}

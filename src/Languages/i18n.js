@@ -16,6 +16,9 @@ import aboutcard_fr from './fr/aboutcard.json';
 import navbar_en from './en/navbar.json';
 import navbar_fr from './fr/navbar.json';
 
+import blog_en from './en/blog.json';
+import blog_fr from './fr/blog.json'
+
 i18n.use(initReactI18next).init({
   debug: true,
   fallbackLng: 'en',  // Ensures it falls back to English if French key is missing
@@ -26,7 +29,8 @@ i18n.use(initReactI18next).init({
       home: home_en,
       typewriter: typewriter_en,
       about:aboutus_en,
-      aboutcard:aboutcard_en
+      aboutcard:aboutcard_en,
+      blog:blog_en
     },
     fr: {
       navbar: navbar_fr,
@@ -34,7 +38,8 @@ i18n.use(initReactI18next).init({
       home: home_fr,
       typewriter: typewriter_fr,
       about: aboutus_fr,
-      aboutcard:aboutcard_fr
+      aboutcard:aboutcard_fr,
+      blog:blog_fr
     },
   }
 });

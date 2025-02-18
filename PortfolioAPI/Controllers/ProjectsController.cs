@@ -37,22 +37,28 @@ public class ProjectsController : ControllerBase
     {
         return Ok(await _context.Projects.FirstOrDefaultAsync(d => d.Id == id));
     }
-    [HttpPost]
+    [HttpPost("")]
     [Authorize]
-    public async Task<IActionResult> PostProject([FromBody]Project project)
+    public async Task<IActionResult> PostProject([FromBody] Project project)
     {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var userId = User.FindFirstValue(ClaimTypes.Name);
         if (userId == null)
         {
             return Unauthorized("User is not authenticated or invalid ID format.");
         }
 
-        if (_userManager.FindByIdAsync(userId).Result.IsAdmin == false)
+        var user = await _userManager.FindByNameAsync(userId);
+        if (user == null || !user.IsAdmin)
         {
             return Unauthorized("You are not an administrator. You do not have the right to create projects");
         }
-        return Ok(_context.Projects.Add(project));
+
+        _context.Projects.Add(project);
+        await _context.SaveChangesAsync(); // Save to database
+
+        return Ok(project);
     }
+
     
     
 }

@@ -1,3 +1,7 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
 using PortfolioAPI.Data;
 using PortfolioAPI.Model;
 
@@ -16,14 +20,17 @@ public class AuthController : ControllerBase
 {
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IConfiguration _configuration;
 
     public AuthController(
         SignInManager<ApplicationUser> signInManager, 
-        UserManager<ApplicationUser> userManager
+        UserManager<ApplicationUser> userManager,
+        IConfiguration configuration
         )
     {
         _signInManager = signInManager;
         _userManager = userManager;
+        _configuration = configuration;
     }
     /// <summary>
     /// Creates the account without the use of external API
@@ -60,19 +67,34 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Login([FromBody] LoginModel model)
     {
         var user = await _userManager.FindByNameAsync(model.UserName);
-        if (user == null)
+        if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
         {
-            return Unauthorized("Invalid username or password.");
-        }
+            var authClaims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            };
 
-        var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
-        if (!result.Succeeded)
-        {
-            return Unauthorized("Invalid username or password.");
-        }
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(authClaims),
+                Expires = DateTime.UtcNow.AddMinutes(double.Parse(_configuration["Jwt:ExpiryMinutes"]!)),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Issuer = _configuration["Jwt:Issuer"]
+            };
 
-        return Ok(new { message = "Login successful", user.Email });
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenString = tokenHandler.WriteToken(token);
+            
+            await _userManager.SetAuthenticationTokenAsync(user, "JWT", "AccessToken", tokenString);
+
+            return Ok(new { token = tokenString });
+        }
+        return Unauthorized();
     }
+
 
     /// <summary>
     /// Handles Github Login
@@ -109,12 +131,47 @@ public class AuthController : ControllerBase
         var user = await _userManager.FindByEmailAsync(info.Principal.FindFirstValue(ClaimTypes.Email));
         if (user == null)
         {
-            user = new ApplicationUser { UserName = info.Principal.FindFirstValue(ClaimTypes.Email), Email = info.Principal.FindFirstValue(ClaimTypes.Email) };
+            user = new ApplicationUser 
+            { 
+                UserName = info.Principal.FindFirstValue(ClaimTypes.Email), 
+                Email = info.Principal.FindFirstValue(ClaimTypes.Email) 
+            };
             await _userManager.CreateAsync(user);
             await _userManager.AddLoginAsync(user, info);
         }
 
         await _signInManager.SignInAsync(user, isPersistent: false);
-        return Ok(new { message = "Login successful", user.Email });
+
+        // Instead of returning JSON, redirect to frontend with the token
+        var token = "your_generated_token"; // You need to generate a JWT token here.
+        return Redirect($"http://localhost:5173/auth-success?token={token}");
     }
+    [HttpGet("user-info")]
+    [Authorize]
+    public async Task<IActionResult> GetUserInfo()
+    {
+        var userName = User.Identity?.Name;
+
+        if (string.IsNullOrEmpty(userName))
+        {
+            return Unauthorized(new { error = "User is not authenticated" });
+        }
+
+        var user = await _userManager.FindByNameAsync(userName);
+        if (user == null)
+        {
+            return NotFound(new { error = "User not found" });
+        }
+
+        return Ok(new
+        {
+            id = user.Id,
+            username = user.UserName,
+            email = user.Email,
+            admin = user.IsAdmin,
+        });
+    }
+    
+    
+
 }

@@ -10,6 +10,7 @@ public class Comment
     public int Id { get; set; }
     [ForeignKey("UserId")]
     public string UserId { get; set; }
+    public string UserName { get; set; }
     public int PostId { get; set; }
     public string Text { get; set; }
     public DateTime Date { get; set; }

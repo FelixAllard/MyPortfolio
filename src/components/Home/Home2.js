@@ -5,7 +5,6 @@ import Tilt from "react-parallax-tilt";
 import { AiFillGithub, AiOutlineTwitter, AiFillInstagram } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import '../../Languages/i18n';
 function Home2() {
   const { t } = useTranslation("home2");
 

@@ -1,0 +1,9 @@
+{
+  "home": "Accueil",
+  "about": "À propos",
+  "projects": "Projets",
+  "resume": "CV",
+  "blog": "Blog",
+  "login":"Login",
+  "loggedin": "Bienvenue!"
+}

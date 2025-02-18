@@ -4,8 +4,14 @@ import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
+import Tilt from "react-parallax-tilt";
+import myImg from "../../Assets/avatar.svg";
+import {AiFillGithub, AiFillInstagram, AiOutlineTwitter} from "react-icons/ai";
+import {FaLinkedinIn} from "react-icons/fa";
+import {useTranslation} from "react-i18next";
 
 function Home() {
+  const { t } = useTranslation("home2");
   return (
     <section>
       <Container fluid className="home-section" id="home">
@@ -41,7 +47,7 @@ function Home() {
           </Row>
         </Container>
       </Container>
-      <Home2 />
+      <Home2/>
     </section>
   );
 }

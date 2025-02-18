@@ -1,14 +1,12 @@
 {
-  "comments": {
-    "title": "Commentaires",
-    "noComments": "Aucun commentaire pour l'instant !",
-    "beFirst": "Soyez le premier à partager vos pensées.",
-    "commentBy": "Commentaire de",
-    "commentOnPost": "Commentaire sur le post {{postId}}",
-    "postedOn": "Publié le",
-    "addComment": "Ajouter un commentaire",
-    "placeholder": "Partagez vos pensées ici...",
-    "postButton": "Publier le commentaire",
-    "posting": "Publication..."
-  }
+  "title": "Commentaires",
+  "noComments": "Aucun commentaire pour l'instant !",
+  "beFirst": "Soyez le premier à partager vos pensées.",
+  "commentBy": "Commentaire de",
+  "commentOnPost": "Commentaire sur le post {{postId}}",
+  "postedOn": "Publié le",
+  "addComment": "Ajouter un commentaire",
+  "placeholder": "Partagez vos pensées ici...",
+  "postButton": "Publier le commentaire",
+  "posting": "Publication..."
 }

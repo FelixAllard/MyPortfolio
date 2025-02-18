@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
-import { makeRequest } from "../../AxiosInstance"; // Custom axios instance
+import { Container, Row, Col } from "react-bootstrap";
+import { makeRequest } from "../../AxiosInstance"; // Assumes this is a custom axios instance
 import { useTranslation } from "react-i18next";
 import { isLoggedIn } from "../../AxiosInstance";
 
 function Blog() {
-    const { t } = useTranslation();
+    const { i18n } = useTranslation();
+
+    // Check if the current language is French
+    const isFrench = i18n.language === 'fr';
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [loading, setLoading] = useState(false);
@@ -24,78 +27,83 @@ function Blog() {
     }, []);
 
     const handleAddComment = async (commentText) => {
-        if (!commentText.trim()) return; // Prevent submission if empty
+        if (!commentText.trim()) return; // Prevent submission if the comment is empty
 
-        setLoading(true);
+        setLoading(true); // Show loading state while the comment is being posted
 
         try {
-            const newCommentData = { text: commentText };
+            const newCommentData = {
+                text: commentText, // Only the text field needs to be filled
+            };
 
             // API call to POST the new comment
-            const response = await makeRequest('POST', '/Comment', newCommentData);
+            const response = await makeRequest('POST', '/Comment', commentText);
 
             if (response) {
-                // On success, add the new comment
+                // On success, add the new comment to the state
                 setComments([response, ...comments]);
-                setNewComment('');
+                setNewComment(''); // Clear the textarea
             }
         } catch (error) {
             console.error('Failed to add comment:', error);
         } finally {
-            setLoading(false);
+            setLoading(false); // Hide loading state after the request completes
         }
     };
 
     return (
-        <Container fluid className="comment-section bg-dark text-white py-5">
+        <Container fluid className="comment-section">
             <Container>
-                <h1 className="text-center mb-4">{t("title")}</h1>
+                <br />
+                <br />
+                <br />
+                <h1 className="project-heading">Comments</h1>
 
-                {/* Placeholder when there are no comments */}
+                {/* Placeholder box when there are no comments */}
                 {comments.length === 0 ? (
-                    <div className="text-center p-4 bg-secondary rounded">
-                        <h4>{t("noComments")}</h4>
-                        <p>{t("beFirst")}</p>
+                    <div className="no-comments-placeholder">
+                        <h4>No comments yet!</h4>
+                        <p>Be the first to share your thoughts.</p>
                     </div>
                 ) : (
-                    <Row className="justify-content-center">
+                    <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
                         {comments.map((comment) => (
-                            <Col md={6} lg={4} key={comment.id} className="mb-4">
-                                <Card className="bg-secondary text-white shadow-lg">
-                                    <Card.Header className="fw-bold">
-                                        {t("commentBy")}: {comment.userName}
-                                    </Card.Header>
-                                    <Card.Body>
-                                        <Card.Title>{t("commentOnPost", { postId: comment.postId })}</Card.Title>
-                                        <Card.Text>{comment.text}</Card.Text>
-                                        <Card.Footer className="text-muted small">
-                                            {t("postedOn")}: {new Date(comment.date).toLocaleString()}
-                                        </Card.Footer>
-                                    </Card.Body>
-                                </Card>
+                            <Col md={4} className="project-card" key={comment.id}>
+                                <div className="card shadow-sm">
+                                    <div className="card-header">
+                                        Comment by: {comment.userName}
+                                    </div>
+                                    <div className="card-body">
+                                        <h5 className="card-title">Comment on Post {comment.postId}</h5>
+                                        <p className="card-text">{comment.text}</p>
+                                        <p className="card-text">
+                                            <small className="text-muted">
+                                                Posted on: {new Date(comment.date).toLocaleString()}
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
                             </Col>
                         ))}
                     </Row>
                 )}
-
                 {isLoggedIn() && (
-                    <div className="add-comment-section mt-5">
-                        <h4>{t("addComment")}</h4>
-                        <Form.Control
-                            as="textarea"
-                            rows={4}
-                            className="bg-dark text-white border-secondary mb-3"
-                            placeholder={t("placeholder")}
+                    <div className="add-comment-section mt-4">
+                        <h4>Add a Comment</h4>
+                        <textarea
+                            className="form-control"
+                            rows="4"
+                            placeholder="Share your thoughts here..."
                             value={newComment}
                             onChange={(e) => setNewComment(e.target.value)}
-                        />
-                        <Button
-                            variant="primary"
+                        ></textarea>
+                        <button
+                            className="btn btn-primary mt-3"
                             onClick={() => handleAddComment(newComment)}
                             disabled={!newComment.trim() || loading}
                         >
-                            {loading ? t("posting") : t("postButton")}
-                        </Button>
+                            {loading ? 'Posting...' : 'Post Comment'}
+                        </button>
                     </div>
                 )}
             </Container>

@@ -3,28 +3,30 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
-import {isLoggedIn, makeRequest} from "../../AxiosInstance";
+import { isLoggedIn, makeRequest } from "../../AxiosInstance";
+import { useNavigate } from "react-router-dom";
 
 function ProjectCards(props) {
+    const navigate = useNavigate();
+
+    // Navigate to the update page with the project ID
     const handleUpdate = () => {
-        // Placeholder for update logic
-        alert(`Update project: ${props.title}`);
+        navigate(`/project/update/${props.id}`, { state: { project: props } });
     };
 
     const handleDelete = async (projectId) => {
         try {
             const response = await makeRequest('DELETE', `/Projects/${projectId}`);
-
+            window.location.reload();
             if (response && response.status === 200) {
+
                 console.log('Project deleted successfully:', response.data);
-                // Optionally, remove the project from the UI or refresh the list
-                window.location.reload();
+
             }
         } catch (error) {
             console.error('Failed to delete project:', error.response ? error.response.data : error.message);
         }
     };
-
 
     return (
         <Card className="project-card-view">
@@ -39,7 +41,6 @@ function ProjectCards(props) {
                     {props.isBlog ? "Blog" : "GitHub"}
                 </Button>
 
-                {/* If the component contains Demo link and if it's not a Blog then, it will render the below component */}
                 {!props.isBlog && props.demoLink && (
                     <Button
                         variant="primary"
@@ -51,7 +52,6 @@ function ProjectCards(props) {
                     </Button>
                 )}
 
-                {/* Render Update and Delete buttons if the user is logged in */}
                 {isLoggedIn() && (
                     <div style={{ marginTop: "10px" }}>
                         <Button variant="warning" onClick={handleUpdate} style={{ marginRight: "10px" }}>

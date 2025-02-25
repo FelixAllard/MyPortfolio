@@ -7,6 +7,9 @@ import Aboutcard from "./AboutCard";
 import MyPerson from "./MyPerson.png";
 import Toolstack from "./Toolstack";
 import { useTranslation } from "react-i18next";
+import {isLoggedIn} from "../../AxiosInstance";
+import AddSkill from "./AddSkill";
+
 
 function About() {
   const { t } = useTranslation("about");
@@ -37,7 +40,11 @@ function About() {
               <img src={MyPerson} alt="about" className="img-fluid" />
             </Col>
           </Row>
-          <h1 className="project-heading">
+
+        {isLoggedIn() && <AddSkill />}
+
+
+            <h1 className="project-heading">
             {t("professionalSkillset")} <strong className="purple">{t("skillset")}</strong>
           </h1>
 

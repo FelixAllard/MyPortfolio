@@ -5,6 +5,7 @@ import Tilt from "react-parallax-tilt";
 import { AiFillGithub, AiOutlineTwitter, AiFillInstagram } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import ContactMe from "../ContactMe/ContactMe";
 function Home2() {
   const { t } = useTranslation("home2");
 
@@ -44,6 +45,7 @@ function Home2() {
               </Tilt>
             </Col>
           </Row>
+          <ContactMe/>
           <Row>
             <Col md={12} className="home-about-social">
               <h1>{t("find_me")}</h1>

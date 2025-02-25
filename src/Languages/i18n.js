@@ -28,6 +28,9 @@ import github_fr from './fr/github.json';
 import resume_en from  './en/resume.json';
 import resume_fr from './fr/resume.json';
 
+import contactme_en from  './en/contactme.json';
+import contactme_fr from './fr/contactme.json';
+
 
 i18n.use(initReactI18next).init({
   debug: true,
@@ -43,7 +46,8 @@ i18n.use(initReactI18next).init({
       blog:blog_en,
       project:project_en,
       github:github_en,
-      resume:resume_en
+      resume:resume_en,
+      contactMe:contactme_en,
     },
     fr: {
       navbar: navbar_fr,
@@ -55,7 +59,8 @@ i18n.use(initReactI18next).init({
       blog:blog_fr,
       project:project_fr,
       github:github_fr,
-      resume:resume_fr
+      resume:resume_fr,
+      contactMe:contactme_fr
     },
   }
 });

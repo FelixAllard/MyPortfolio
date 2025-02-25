@@ -20,6 +20,7 @@ function AddSkillForm() {
             setName("");
             setIconName("");
             setTool(false);
+            window.location.reload();
         } catch (error) {
             setErrorMessage("Failed to add skill. Please try again.");
             setSuccessMessage("");
@@ -65,7 +66,7 @@ function AddSkillForm() {
                     {iconName && (
                         <div className="text-center mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
-                                <path fill="#ffffff" d="M6,42V6h36v36H6z"></path>
+                                <path fill="rgba(255, 255, 255, 0)" d="M6,42V6h36v36H6z"></path>
                                 <path fill="#000000" d={iconName}></path>
                             </svg>
                         </div>

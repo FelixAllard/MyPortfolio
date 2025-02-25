@@ -61,8 +61,8 @@ function Techstack() {
             {skills.map((skill) => (
                 <Col xs={4} md={2} className="tech-icons" key={skill.id}>
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
-                        <path fill="#ffffff" d="M6,42V6h36v36H6z"></path>
-                        <path fill="#000001" d={skill.icon_name}></path>
+                        <path fill="rgba(255, 255, 255, 0)" d="M6,42V6h36v36H6z"></path>
+                        <path fill="#ffffff" d={skill.icon_name}></path>
                     </svg>
                     {isLoggedIn() && (
                         <div style={{ marginTop: "10px" }}>

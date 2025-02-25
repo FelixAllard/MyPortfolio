@@ -110,7 +110,7 @@ function NavBar() {
               )}
               {isLoggedIn() &&
                   (
-                      <Nav.Link as={Link} to="/admin/blog" onClick={() => updateExpanded(false)}>
+                      <Nav.Link as={Link} to="/admin/dashboard" onClick={() => updateExpanded(false)}>
                         <AiOutlineHome style={{ marginBottom: "2px" }} /> Admin Dashboard
                       </Nav.Link>
                   )

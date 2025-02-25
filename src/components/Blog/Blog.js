@@ -92,9 +92,9 @@ function Blog() {
         : comments.filter((comment) => comment.status === selectedStatus);
 
     return (
-        <Container fluid className="comment-section">
+        <Container fluid className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }}>
             <Particle/>
-            <Container>
+            <Container >
                 <br />
                 <h1 className="project-heading">{t("title")}</h1>
 
@@ -127,8 +127,8 @@ function Blog() {
 
                 {filteredComments.length === 0 ? (
                     <div className="no-comments-placeholder">
-                        <h4>{t("noComments")}</h4>
-                        <p>{t("beFirst")}</p>
+                        <h4 className="text-white">{t("noComments")}</h4>
+                        <p className="text-white">{t("beFirst")}</p>
                     </div>
                 ) : (
                     <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
@@ -173,7 +173,7 @@ function Blog() {
 
                 {!isLoggedIn() && (
                     <div className="add-comment-section mt-4">
-                        <h4>{t("addComment")}</h4>
+                        <h4 className="text-white">{t("addComment")}</h4>
                         <input
                             type="text"
                             className="form-control mb-2"

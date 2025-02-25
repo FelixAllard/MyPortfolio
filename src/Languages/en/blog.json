@@ -2,6 +2,7 @@
   "title": "Comments",
   "noComments": "No comments yet!",
   "beFirst": "Be the first to share your thoughts.",
+  "usernamePlaceholder": "Username",
   "commentBy": "Comment by",
   "commentOnPost": "Comment on Post {{postId}}",
   "postedOn": "Posted on",

@@ -2,6 +2,7 @@
   "title": "Commentaires",
   "noComments": "Aucun commentaire pour l'instant !",
   "beFirst": "Soyez le premier à partager vos pensées.",
+  "usernamePlaceholder": "Pseudo",
   "commentBy": "Commentaire de",
   "commentOnPost": "Commentaire sur le post {{postId}}",
   "postedOn": "Publié le",

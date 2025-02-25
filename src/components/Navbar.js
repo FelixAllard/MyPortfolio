@@ -13,10 +13,12 @@ import {
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
+  AiOutlineLogout
+
 } from "react-icons/ai";
 import { CgFileDocument } from "react-icons/cg";
 import LanguageToggle from "../Languages/LanguageToggle";
-import { isLoggedIn } from "../AxiosInstance";
+import { isLoggedIn, logout } from "../AxiosInstance";
 
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
@@ -32,6 +34,11 @@ function NavBar() {
   }
 
   window.addEventListener("scroll", scrollHandler);
+
+  function handleLogout() {
+    logout();
+    window.location.reload();
+  }
 
   return (
       <Navbar expanded={expand} fixed="top" expand="md" className={navColour ? "sticky" : "navbar"}>
@@ -86,12 +93,14 @@ function NavBar() {
               </Nav.Item>
 
               {/* Corrected logic for displaying the login/logout button */}
-              {isLoggedIn() ? (
+              {isLoggedIn() ?
+              (
                   <Nav.Item>
-                    <Nav.Link as={Link} to="/logout" onClick={() => updateExpanded(false)}>
-                      <ImUser style={{ marginBottom: "2px" }} /> {t('loggedin')}
+                    <Nav.Link onClick={handleLogout}>
+                      <AiOutlineLogout style={{ marginBottom: "2px" }} /> {t('loggedin')}
                     </Nav.Link>
                   </Nav.Item>
+
               ) : (
                   <Nav.Item>
                     <Nav.Link as={Link} to="/login" onClick={() => updateExpanded(false)}>
@@ -99,6 +108,14 @@ function NavBar() {
                     </Nav.Link>
                   </Nav.Item>
               )}
+              {isLoggedIn() &&
+                  (
+                      <Nav.Link as={Link} to="/admin/blog" onClick={() => updateExpanded(false)}>
+                        <AiOutlineHome style={{ marginBottom: "2px" }} /> Admin Dashboard
+                      </Nav.Link>
+                  )
+              }
+
             </Nav>
           </Navbar.Collapse>
         </Container>

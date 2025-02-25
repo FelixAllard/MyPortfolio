@@ -17,7 +17,11 @@ import navbar_en from './en/navbar.json';
 import navbar_fr from './fr/navbar.json';
 
 import blog_en from './en/blog.json';
-import blog_fr from './fr/blog.json'
+import blog_fr from './fr/blog.json';
+
+import project_en from './en/project.json';
+import project_fr from './fr/project.json';
+
 
 i18n.use(initReactI18next).init({
   debug: true,
@@ -30,7 +34,8 @@ i18n.use(initReactI18next).init({
       typewriter: typewriter_en,
       about:aboutus_en,
       aboutcard:aboutcard_en,
-      blog:blog_en
+      blog:blog_en,
+      project:project_en
     },
     fr: {
       navbar: navbar_fr,
@@ -39,7 +44,8 @@ i18n.use(initReactI18next).init({
       typewriter: typewriter_fr,
       about: aboutus_fr,
       aboutcard:aboutcard_fr,
-      blog:blog_fr
+      blog:blog_fr,
+      project:project_fr
     },
   }
 });

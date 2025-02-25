@@ -1,12 +1,14 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+
 // Function to get the token from cookies
 const getToken = () => Cookies.get('authToken');
 
 // Create an Axios instance with the base URL and credentials configured
 const api = axios.create({
-    baseURL: 'https://cors-anywhere.herokuapp.com/http://96.23.35.62:5171/api', // Adjust your base URL as needed
+    baseURL: `http://localhost:5171/api`, // Adjust your base URL as needed
+    //
     headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${getToken()}`
@@ -61,9 +63,20 @@ const register = async (username, email, password) => {
 
 
 
-// Logout function to clear the token
+// Logout function to clear the token and all cookies
 const logout = () => {
+    // Remove the specific authToken cookie
     Cookies.remove('authToken');
+
+    // Clear all cookies
+    Object.keys(Cookies.get()).forEach(cookieName => {
+        Cookies.remove(cookieName);
+    });
+
+    // Optionally, reset the Authorization header
+    delete api.defaults.headers.common['Authorization'];
+
+    console.log('All cookies cleared and logout successful.');
 };
 
 export { api, makeRequest, login, register, isLoggedIn, logout };

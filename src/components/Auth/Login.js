@@ -13,6 +13,7 @@ const Login = () => {
         try {
             await login(username, password);
             navigate('/'); // Redirect after login
+            window.location.reload();
         } catch (err) {
             setError('Login failed. Please check your credentials.');
         }

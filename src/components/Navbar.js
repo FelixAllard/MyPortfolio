@@ -57,9 +57,7 @@ function NavBar() {
             <span></span>
           </Navbar.Toggle>
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav.Item>
-              <LanguageToggle />
-            </Nav.Item>
+
 
             <Nav className="ms-auto" defaultActiveKey="#home">
               <Nav.Item>
@@ -117,6 +115,9 @@ function NavBar() {
               }
 
             </Nav>
+            <Nav.Item>
+              <LanguageToggle />
+            </Nav.Item>
           </Navbar.Collapse>
         </Container>
       </Navbar>

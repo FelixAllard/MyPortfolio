@@ -11,16 +11,45 @@ function ToolStack() {
     const [iconName, setIconName] = useState("");
     const [tool, setTool] = useState(false);
 
-    const handleDelete = async (skillId) => {
+
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [skillToDelete, setSkillToDelete] = useState(null);
+
+
+    const promptDelete = (skill) => {
+        setSkillToDelete(skill);
+        setShowDeleteModal(true);
+    };
+
+    const confirmDelete = async () => {
+        if (!skillToDelete || !skillToDelete.id) {
+            console.error("No skill selected or skill missing id.");
+            return;
+        }
+
         try {
-            const response = await makeRequest('DELETE', `/Skill/${skillId}`);
+            const response = await makeRequest('DELETE', `/Skill/${skillToDelete.id}`);
             if (response && response.status === 200) {
-                setSkills(skills.filter(skill => skill.id !== skillId));
+                window.location.reload();
+                setShowDeleteModal(false);
+                window.location.reload();
             }
+            window.location.reload();
         } catch (error) {
             console.error('Failed to delete skill:', error.response ? error.response.data : error.message);
         }
     };
+
+    /*    const handleDelete = async (skillId) => {
+            try {
+                const response = await makeRequest('DELETE', `/Skill/${skillId}`);
+                if (response && response.status === 200) {
+                    setSkills(skills.filter(skill => skill.id !== skillId));
+                }
+            } catch (error) {
+                console.error('Failed to delete skill:', error.response ? error.response.data : error.message);
+            }
+        };*/
 
     const handleModify = (skill) => {
         setSelectedSkill(skill);
@@ -67,7 +96,8 @@ function ToolStack() {
                     {isLoggedIn() && (
                         <div style={{ marginTop: "10px" }}>
                             <Button variant="warning" onClick={() => handleModify(skill)}>Modify</Button>
-                            <Button variant="danger" onClick={() => handleDelete(skill.id)}>Delete</Button>
+                            <Button variant="danger" onClick={() => promptDelete(skill)}>Delete</Button>
+
                         </div>
                     )}
                 </Col>
@@ -119,6 +149,23 @@ function ToolStack() {
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
                     <Button variant="primary" onClick={handleSaveChanges}>Save Changes</Button>
+                </Modal.Footer>
+            </Modal>
+            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Deletion</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Are you sure you want to delete{" "}
+                    <strong>{skillToDelete?.name}</strong>?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={confirmDelete}>
+                        Delete
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </Row>

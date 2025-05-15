@@ -65,6 +65,10 @@ builder.Services.AddAuthentication(options =>
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
     serverOptions.ListenAnyIP(5171);
+    serverOptions.ListenAnyIP(7258, listenOptions =>
+    {
+        listenOptions.UseHttps(); // HTTPS on port 7258
+    });
 });
 
 var app = builder.Build();
@@ -83,5 +87,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
-app.Urls.Add("http://0.0.0.0:5171");
+//app.Urls.Add("http://0.0.0.0:5171");
 app.Run();
